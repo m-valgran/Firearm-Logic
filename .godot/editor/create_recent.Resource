@@ -1,0 +1,7 @@
+Weapon
+RectangleShape2D
+MeleeWeapon
+RangedWeapon
+Movement
+Stats
+Resource

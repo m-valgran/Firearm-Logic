@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc8o0kxxfnn1v"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/RangedWeapon/ranged_weapon.gd" id="1_a0tk3"]
+
+[node name="RangedWeapon" type="Node2D"]
+script = ExtResource("1_a0tk3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+
+[node name="Muzzle" type="Node2D" parent="."]
+
+[node name="MuzzleTimer" type="Timer" parent="."]
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="MuzzleTimer" to="." method="_on_muzzle_timer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

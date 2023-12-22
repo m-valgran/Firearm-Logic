@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dppau81jhpjiv"]
+
+[ext_resource type="PackedScene" uid="uid://bc8o0kxxfnn1v" path="res://Scenes/Weapons/RangedWeapon/ranged_weapon.tscn" id="1_3xs54"]
+[ext_resource type="Resource" uid="uid://c8dbptst5xv5t" path="res://Resources/Weapons/ak-47.tres" id="2_ojw7j"]
+[ext_resource type="Texture2D" uid="uid://djioed43arats" path="res://Assets/AK-47.png" id="2_qbm6c"]
+[ext_resource type="PackedScene" uid="uid://gavyxj0p3627" path="res://Scenes/Weapons/Projectile/projectile.tscn" id="3_rdvqn"]
+
+[node name="RangedWeapon" instance=ExtResource("1_3xs54")]
+_resource = ExtResource("2_ojw7j")
+_projectile = ExtResource("3_rdvqn")
+_fire_rate = 600
+_muzzle_velocity = 2000
+_reload_time = 2.0
+_capacity = 30
+_mag = 30
+_reserve = 60
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_qbm6c")
+
+[node name="Muzzle" parent="." index="1"]
+position = Vector2(37, 0)

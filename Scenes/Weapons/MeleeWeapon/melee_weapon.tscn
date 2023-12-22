@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://6k56dlb6ns33"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/MeleeWeapon/melee_weapon.gd" id="1_3ddwt"]
+[ext_resource type="PackedScene" uid="uid://bdrhcha82f3iw" path="res://Scenes/Areas/Hitbox/hitbox.tscn" id="2_dpx5a"]
+[ext_resource type="Shape2D" uid="uid://d1y2b6kj5gg0f" path="res://Scenes/Areas/Hitbox/Shapes/shape_melee_lg.tres" id="3_idvj3"]
+
+[sub_resource type="Animation" id="Animation_weeld"]
+resource_name = "Attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_453rw"]
+_data = {
+"Attack": SubResource("Animation_weeld")
+}
+
+[node name="MeleeWeapon" type="Node2D"]
+script = ExtResource("1_3ddwt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Hitbox" parent="." instance=ExtResource("2_dpx5a")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = ExtResource("3_idvj3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_453rw")
+}
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="Hitbox"]

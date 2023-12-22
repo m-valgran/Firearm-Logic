@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Movement" load_steps=2 format=3 uid="uid://c353brky1tly1"]
+
+[ext_resource type="Script" path="res://Resources/Movement/movement_resource.gd" id="1_nkj5o"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_nkj5o")
+_speed = 300
+_acceleration = 30
+_friction = 30

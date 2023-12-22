@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://gavyxj0p3627"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/Projectile/projectile.gd" id="1_4bdp4"]
+[ext_resource type="Texture2D" uid="uid://cxosehda65hmm" path="res://Assets/placeholder_x8.png" id="2_11pa7"]
+[ext_resource type="PackedScene" uid="uid://bdrhcha82f3iw" path="res://Scenes/Areas/Hitbox/hitbox.tscn" id="3_qd1hv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3om22"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qrah"]
+size = Vector2(8, 8)
+
+[node name="Projectile" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.01
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_4bdp4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3om22")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_11pa7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="Hitbox" parent="." instance=ExtResource("3_qd1hv")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_6qrah")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+
+[editable path="Hitbox"]

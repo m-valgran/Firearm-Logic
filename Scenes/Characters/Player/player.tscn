@@ -1,0 +1,57 @@
+[gd_scene load_steps=13 format=3 uid="uid://bh3e60epkrhcq"]
+
+[ext_resource type="Script" path="res://Scenes/Characters/Player/player.gd" id="1_mqc7d"]
+[ext_resource type="Texture2D" uid="uid://dhe5iabrivb8s" path="res://Assets/placeholder_x64.png" id="2_40qch"]
+[ext_resource type="Resource" uid="uid://djgvncxg3ojw2" path="res://Resources/Stats/stats_player.tres" id="2_o8vkb"]
+[ext_resource type="Resource" uid="uid://c353brky1tly1" path="res://Resources/Movement/movement_player.tres" id="3_xxe6g"]
+[ext_resource type="PackedScene" uid="uid://cbvy0qnf2irsy" path="res://Scenes/Areas/SoftCollision/soft_collision.tscn" id="5_t7ul1"]
+[ext_resource type="PackedScene" uid="uid://d3t5jotcpba16" path="res://Scenes/Characters/Player/ItemController/item_controller.tscn" id="6_mxp62"]
+[ext_resource type="PackedScene" uid="uid://caokct5q8mgju" path="res://Scenes/Areas/Hurtbox/hurtbox.tscn" id="7_ji6xm"]
+[ext_resource type="PackedScene" uid="uid://dppau81jhpjiv" path="res://Scenes/Weapons/ak-47.tscn" id="7_xq712"]
+[ext_resource type="PackedScene" uid="uid://e7oj6ig17vvb" path="res://Scenes/Characters/Player/HUD/hud.tscn" id="11_ee8ho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v412m"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4h08"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2jml"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 512
+script = ExtResource("1_mqc7d")
+_stats = ExtResource("2_o8vkb")
+_movement = ExtResource("3_xxe6g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_40qch")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v412m")
+
+[node name="SoftCollision" parent="." instance=ExtResource("5_t7ul1")]
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource("RectangleShape2D_l4h08")
+
+[node name="ItemController" parent="." instance=ExtResource("6_mxp62")]
+position = Vector2(0, 37)
+
+[node name="RangedWeapon" parent="ItemController" instance=ExtResource("7_xq712")]
+
+[node name="Hurtbox" parent="." instance=ExtResource("7_ji6xm")]
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_x2jml")
+
+[node name="HUD" parent="." instance=ExtResource("11_ee8ho")]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="SoftCollision"]
+[editable path="Hurtbox"]

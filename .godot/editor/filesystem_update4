@@ -1,0 +1,14 @@
+res://Scenes/Characters/Player/player.tscn
+res://Resources/Movement/movement_resource.gd
+res://Resources/Weapons/weapon_resource.gd
+res://Resources/Stats/stats_player.tres
+res://Resources/Movement/movement_player.tres
+res://Resources/Weapons/ak-47.tres
+res://Resources/Weapons/axe.tres
+res://Resources/Stats/stats_enemy.tres
+res://Resources/Movement/movement_enemy.tres
+res://Scenes/Weapons/ak-47.tscn
+res://Scenes/Weapons/axe.tscn
+res://Scenes/Weapons/MeleeWeapon/melee_weapon.tscn
+res://Scenes/Characters/Enemy/enemy.tscn
+res://Scenes/Characters/Player/ItemController/item_controller.tscn

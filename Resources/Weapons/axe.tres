@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://iulddp4ymvl7"]
+
+[ext_resource type="Script" path="res://Resources/Weapons/weapon_resource.gd" id="1_t075a"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_t075a")
+_name = "Axe"
+_damage = 7
+_knockback = 400
